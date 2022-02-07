@@ -1,0 +1,21 @@
+{
+  "client_api_endpoint": "127.0.0.1:9200",
+  "master_node_client_api_endpoints": [
+    "94.130.59.140:9200",
+    "195.201.29.196:9200",
+    "195.201.28.215:9200",
+    "195.201.28.160:9200",
+    "195.201.28.154:9200",
+    "195.201.28.203:9200",
+    "195.201.28.151:9200"
+  ],
+  "blockchain_explorer_client_api_endpoints": [
+    "195.201.31.106:9876"
+  ],
+  "key_store": {
+    "keys_file_path": "/home/tolar/.tolar/keystore/keys.info",
+    "secrets_path": "/home/tolar/.tolar/keystore/keys"
+  },
+  "max_grpc_threads": 100,
+  "minimum_gas_price": "1000000000000"
+}

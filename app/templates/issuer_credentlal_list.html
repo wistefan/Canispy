@@ -1,0 +1,19 @@
+    <div class="container">
+
+    {% for cred in credentials %}
+
+        <div class="card">
+            <a onclick="transferViaQR('{{ cred }}')">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Diagnostic ID: {{ cred }}
+                    </p>
+                </header>
+            </a>
+        </div>
+
+       </br>
+    {% endfor %}
+
+    </div>
+

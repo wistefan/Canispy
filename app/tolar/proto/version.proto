@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package tolar.proto;
+
+service VersionService {
+  rpc Version(VersionRequest) returns (VersionResponse);
+  rpc ProtocolVersion(ProtocolVersionRequest) returns (ProtocolVersionResponse);
+}
+
+message VersionRequest {}
+
+message VersionResponse {
+  uint64 version = 1;
+  uint32 major_version = 2;
+  uint32 minor_version = 3;
+  uint32 patch_number = 4;
+  string commit_hash = 5;
+}
+
+message ProtocolVersionRequest {}
+
+message ProtocolVersionResponse {
+  uint64 protocol_version = 1;
+}

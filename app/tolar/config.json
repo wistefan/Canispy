@@ -1,0 +1,18 @@
+{
+    "client_api_endpoint": "127.0.0.1:9200",
+    "master_node_client_api_endpoints": [
+      "116.203.182.5:9200",
+      "116.203.182.9:9200",
+      "116.203.182.11:9200",
+      "116.203.182.13:9200"
+    ],
+    "blockchain_explorer_client_api_endpoints": [
+      "159.69.30.81:9876"
+    ],
+    "key_store": {
+      "keys_file_path": "/home/jesus/canispy/app/tolar/keystore/keys.info",
+      "secrets_path": "/home/jesus/canispy/app/tolar/keystore/keys"
+    },
+    "max_grpc_threads": 100,
+    "minimum_gas_price": "1000000000000"
+  }

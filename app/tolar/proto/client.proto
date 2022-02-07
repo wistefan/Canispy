@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package tolar.proto;
+
+import "tolar/proto/transaction.proto";
+
+service TransactionService {
+  rpc SendSignedTransaction(SendSignedTransactionRequest) returns (SendSignedTransactionResponse);
+}
+
+message SendSignedTransactionRequest {
+  tx.SignedTransaction signed_transaction = 1;
+}
+
+message SendSignedTransactionResponse {
+  bytes transaction_hash = 1;
+}

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package tolar.proto;
+
+import "tolar/proto/common.proto";
+import "tolar/proto/transaction.proto";
+
+message Event {
+    repeated tx.SignedTransaction transactions = 1;
+
+    bytes creator_node_id = 2;
+    bytes self_parent_hash = 3;
+    bytes other_parent_hash = 4;
+
+    uint64 timestamp = 5; // nanoseconds since epoch
+    bytes last_block_hash = 6;
+    uint64 index = 7;
+}
+
+message SignedEvent {
+    Event body = 1;
+    SignatureData sig_data = 2;
+}

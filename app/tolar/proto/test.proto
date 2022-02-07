@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package tolar.test.proto;
+
+message HashableMessage {
+    uint64 value = 1;
+};

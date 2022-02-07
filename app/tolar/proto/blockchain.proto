@@ -1,0 +1,146 @@
+syntax = "proto3";
+
+package tolar.proto;
+
+import "tolar/proto/storage.proto";
+import "tolar/proto/transaction.proto";
+
+service BlockchainService {
+    rpc GetBlockCount(GetBlockCountRequest) returns (GetBlockCountResponse);
+    rpc GetLatestBlock(GetLatestBlockRequest) returns (GetBlockResponse);
+    rpc GetBlockByHash(GetBlockByHashRequest) returns (GetBlockResponse);
+    rpc GetBlockByIndex(GetBlockByIndexRequest) returns (GetBlockResponse);
+    rpc GetPaginatedBlocksByIndexStream(GetPaginatedBlocksByIndexRequest) returns (stream storage.Block);
+    rpc GetCompleteBlockByIndex (GetBlockByIndexRequest) returns (GetCompleteBlockByIndexResponse);
+    rpc GetTransaction(GetTransactionRequest) returns (GetTransactionResponse);
+    rpc GetTransactionReceipt(GetTransactionReceiptRequest) returns (GetTransactionReceiptResponse);
+    rpc GetBlockchainInfo(GetBlockchainInfoRequest) returns (GetBlockchainInfoResponse);
+    rpc GetTransactionList(GetTransactionListRequest) returns (GetTransactionListResponse);
+    rpc GetBalance(GetBalanceRequest) returns (GetBalanceResponse);
+    rpc GetLatestBalance(GetBalanceRequest) returns (GetBalanceResponse);
+    rpc GetNonce(GetNonceRequest) returns (GetNonceResponse);
+    rpc TryCallTransaction(tx.Transaction) returns (TryCallTransactionResponse);
+    rpc GetGasEstimate(tx.Transaction) returns (GetGasEstimateResponse);
+}
+
+message GetBlockCountRequest {
+}
+
+message GetBlockCountResponse {
+    uint64 block_count = 1;
+}
+
+message GetLatestBlockRequest {
+}
+
+message GetBlockByHashRequest {
+    bytes block_hash = 1;
+}
+
+message GetBlockByIndexRequest {
+    uint64 block_index = 1;
+}
+
+message GetBlockResponse {
+    uint64 block_index = 1;
+    bytes hash = 2;
+    bytes previous_block_hash = 3;
+    repeated bytes transaction_hashes = 4;
+    uint64 confirmation_timestamp = 5;
+}
+
+message GetPaginatedBlocksByIndexRequest {
+    uint64 starting_block_index = 1;
+    uint64 number_of_blocks = 2;
+}
+
+message GetCompleteBlockByIndexResponse {
+    storage.Block block = 1;
+}
+
+message GetTransactionRequest {
+    bytes transaction_hash = 1;
+}
+
+message GetTransactionResponse {
+    bytes transaction_hash = 1;
+    bytes block_hash = 2;
+    uint64 transaction_index = 3;
+    bytes sender_address = 4;
+    bytes receiver_address = 5;
+    bytes value = 6;
+    bytes gas = 7;
+    bytes gas_price = 8;
+    bytes data = 9;
+    bytes nonce = 10;
+    uint64 confirmation_timestamp = 11;
+    bytes gas_used = 12;
+    bytes gas_refunded = 13;
+    bytes new_address = 14;
+    bytes output = 15;
+    bool excepted = 16;
+}
+
+message GetBlockchainInfoRequest {
+}
+
+message GetBlockchainInfoResponse {
+    uint64 confirmed_blocks_count = 1;
+    uint64 total_blocks_count = 2;
+    bytes last_confirmed_block_hash = 3;
+}
+
+message GetTransactionReceiptRequest {
+    bytes transaction_hash = 1;
+}
+
+message GetTransactionReceiptResponse {
+    bool excepted = 1;
+    bytes block_hash = 2;
+    uint64 block_index = 3;
+    bytes transaction_hash = 4;
+    uint64 transaction_index = 5;
+    bytes sender_address = 6;
+    bytes receiver_address = 7;
+    bytes new_address = 8;
+    bytes gas_used = 9;
+    repeated tx.LogEntry logs = 10;
+}
+
+message GetTransactionListRequest {
+    repeated bytes addresses = 1;
+    uint64 limit = 2;
+    uint64 skip = 3;
+}
+
+message GetTransactionListResponse {
+    repeated GetTransactionResponse transactions = 1;
+}
+
+message GetBalanceRequest {
+    bytes address = 1;
+    uint64 block_index = 2;
+}
+
+message GetBalanceResponse {
+    bytes balance = 1;
+    uint64 block_index = 2;
+}
+
+message GetNonceRequest {
+    bytes address = 1;
+}
+
+message GetNonceResponse {
+    bytes nonce = 1;
+}
+
+message TryCallTransactionResponse {
+    bytes output = 1;
+    bool excepted = 2;
+}
+
+message GetGasEstimateResponse {
+    uint64 gas_estimate = 1;
+}
+

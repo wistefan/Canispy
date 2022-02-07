@@ -1,0 +1,93 @@
+In case you wish to create your account you can do so, and just use this gateway to get some test tolars : http://faucet.prod.tolar.io/faucet/:address
+You just need to replace the last part ":address" with your actual address. 
+Or if you would like to use this account that has deployed this smart contracts it is this one : 
+
+Account
+=======
+private key : 0xb69cec59d98f8d73de5d12cf9fd41de1403c5db9e5da55f01ac91746a1cbeb2d
+
+address : 54d0b0bc6cbbd54d0ec605cbf87819763445e70ef24fc85c20
+
+Smart Contracts
+===============
+transaction hashes:
+ENSRegistry : 9483821e7e9d214a1ad218889d0dc3308a0f7f4b2fe4dc1129b2e77fe32e6e12
+PublicResolver : 3a3032a07b906e3be0327845719fc896639ceec78dc79f12d33fa6ba1388395d
+
+addresses:
+ENSRegistry : 54674ccf0fc75ee55bfdbf104012cb56f2085a6f262977bc35
+PublicResolver :5445b0f724ba0bb2524e79caca50c13d8a16b54dfecd9ad5a1
+
+Canis Major contract
+====================
+txHash:
+1e7af93528c575abd32d23c37c073406f40b76e82e23bd4c16faa72bf23e2083
+Address:
+54ece245cc634e8fb2ef6ba2d80fac0d8bb25a5979c2340279
+
+Tolar testnet explorer: https://testnet-explorer.tolar.io/
+
+In case you don't know, when interacting with smart contracts, if they require type address to be passed inside of function, constructor, or similar, you would need to pass in ethereum type address, not tolar type.
+Tolar type is only used to describe where to send transactions, but for this I have done a small function to translate this types :
+Function : 
+function short(string) {
+
+  const arr = []; 
+
+  for (let i = 2; i < string.length - 8; i++) {
+
+    arr.push(string[i]);
+
+  } 
+
+  return "0x" + arr.join("");
+
+}
+
+So this function would translate tolar type address to ethereum type for smart contracts interaction.
+
+
+
+
+
+
+Here are the thin node binaries, for all 3 platforms:
+Ubuntu 18.04 LTS (Compatible with most linux distributions as well): https://github.com/Tolar-HashNET/Tolar-mainnet-release/releases/download/v1.0.02/linux-node.zip
+macOS: https://github.com/Tolar-HashNET/Tolar-mainnet-release/releases/download/v1.0.02/macos-node.zip
+Win: https://github.com/Tolar-HashNET/Tolar-mainnet-release/releases/download/v1.0.02/windows-node.zip
+
+Those archives also contain .proto files if you’re going to use gRPC. gRPC API documentation attached as .pdf. 
+
+Only important point, config in archives is for mainnet, so for testing you’ll want to replace it with config.json for testnet which is attached. 
+
+For JSON API, instructions are available at: https://tolar-clients.kwiki.io/docs/json-rpc
+
+Equivalent for Ethereum’s “eth_sendRawTransaction” at Tolar would be “tx_sendSignedTransaction”. For example, if you were to send it via curl, example would look like this:
+curl --data-binary '{"jsonrpc":"2.0","method":"tx_sendSignedTransaction","params":[{"body":{"amount":0,"gas":6000000,"data":"0xcfae3217","nonce":9,"sender_address":"544bc258a960cef076c8e756097cafd5f2202686b32df67d46","receiver_address":"54f51fb1836ad0dcaee07f2c750376d11fb21474f5587ea83c","gas_price":1},"sig_data":{"hash":"ea54d113d60c85d955330ab374908dbe0e020b74adda00e4ac043e4da83b1289","signature":"3466f96ce8d7c73a9671d4f7309df731accd6f5d0bb1f90e9a577ebc50e28ca91e12f6efd9966bd5fc92dee2ffb5e8032242a6f1f6c81c6ab148b2fe07da4f1700","signer_id":"6515c729577527fd2af9a6c8052fc9a43cdbb600d2d6f5f153e4faa0b944b05a0b5065390244eb9285cb8c926e9129f44491be577ff83e308f812b06aa3cbcce"}}],"id":2}' -H 'content-type:text/plain;' https://tolar.dream-factory.hr/
+
+
+Another thing that might make your life easier is our web3js SDK which makes it easier to communicate from Javascript applications. More details are available at the same link as JSON RPC. Example there would look like:
+let tx = {
+  sender_address: sender.address, 
+  receiver_address: receiver.address,
+  amount: 10,
+  gas: 24000,
+  gas_price: 1,
+  data: “some data",
+  nonce,
+  };
+const signedTx = await sender.signTransaction(tx, sender.privateKey); 
+await web3.tolar.sendSignedTransaction(signedTx);
+
+
+
+I will connect you with Ivan and Igor in separate email, they’ve worked a lot with teams developing dApps on Tolar, so they’ll be available for support, and be much faster than going through me, since I currently have a lot of different things in progress. Feel free to ask them for anything you need help with. Ivan is also partially familiar with this since he’s the one that deployed smart contracts you’ve sent me to testnet.
+
+Also, I assume you’ll also need Tolars for gas if you’re executing transactions/calls that write something on blockchain, so if needed once you create new address you can ask Ivan or Igor for test Tolars.
+
+If it can help you, you can find Tolar wallet as Chrome extension at: https://tolar.io/download , it’s first on the download list. 
+
+
+
+
+Yzk1NjAzZjljZDJjNWRhMjVjZjA1NTk3MzhjYWUzMTc3NTM3YmFkODAzOTBkY2M0M2U2YWVlNTZjYTZhMjBhNA==

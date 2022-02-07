@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package tolar.proto.tx;
+
+import "tolar/proto/common.proto";
+
+message Transaction {
+    bytes sender_address = 1;
+    bytes receiver_address = 2;
+    bytes value = 3;
+    bytes gas = 4;
+    bytes gas_price = 5;
+    bytes data = 6;
+    bytes nonce = 7;
+}
+
+message SignedTransaction {
+    Transaction body = 1;
+    SignatureData sig_data = 2;
+}
+
+message TxExecutionResult {
+    bytes gas_used = 1;
+    bytes gas_refunded = 2;
+    bytes new_address = 3;
+    bytes output = 4;
+    bool excepted = 5;
+}
+
+message LogEntry {
+    bytes address = 1;
+    repeated bytes topics = 2;
+    string data = 3;
+}
+
+message ExecutedTransaction {
+    tx.SignedTransaction signed_transaction = 1;
+    tx.TxExecutionResult execution_result = 2;
+    repeated tx.LogEntry logs = 3;
+}
+

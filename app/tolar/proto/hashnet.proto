@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package tolar.proto;
+
+import "tolar/proto/core.proto";
+
+service HashNet {
+    rpc Sync (SyncRequest) returns (stream SignedEvent);
+    rpc FirstChainEvent(FirstChainEventRequest) returns (FirstChainEventResponse);
+    rpc LastChainEvent(LastChainEventRequest) returns (LastChainEventResponse);
+}
+
+message EventSnapshot {
+    string node_id = 1;
+    string last_event_hash = 2;
+}
+
+message SyncRequest {
+    repeated EventSnapshot event_snapshot = 1;
+}
+
+message FirstChainEventRequest {
+    string node_id = 1;
+}
+
+message FirstChainEventResponse {
+    SignedEvent event = 1;
+}
+
+message LastChainEventRequest {
+    string node_id = 1;
+}
+
+message LastChainEventResponse {
+    SignedEvent event = 1;
+}
