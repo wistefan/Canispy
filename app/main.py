@@ -22,7 +22,7 @@ log = logging.getLogger(__name__)
 
 # Create the FastAPi server
 app = FastAPI(
-    title="FIWARE Canis Major with EBSI-Alastria APIs",
+    title="FIWARE Canis Major with EBSI/Alastria APIs",
     description="FIWARE blockchain integration with SSI and Verifiable Credentials with interoperability EBSI-Alastria Red T",
     version="0.2.0",
     openapi_url="/api/v1/openapi.json",
@@ -58,7 +58,7 @@ app.include_router(secure_messaging_router.router, include_in_schema=False)
 
 # For serving static assets.
 # Should be the last route added because it is serving the root ("/")
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+#app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 # Template directory for dynamic HTML pages
 templates = Jinja2Templates(directory="templates")
@@ -87,4 +87,4 @@ async def startup_event():
 
 # This is for running the server in test mode
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

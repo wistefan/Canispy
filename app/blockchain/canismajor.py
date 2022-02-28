@@ -281,8 +281,8 @@ def receipt_as_vc(tx_receipt: TxReceipt) -> dict:
 
     # Generate Verifiable Credential
     credential = {
-        "iss": "did:elsi:VATES-B87307609",
-        "sub": "did:elsi:VATES-B87307609",
+        "iss": "did:elsi:VATBE-0817807097",
+        "sub": "did:elsi:VATBE-0817807097",
         "iat": now,
         "exp": exp,
         "uuid": uid,
@@ -336,8 +336,8 @@ def receipt_as_vc2(tx_receipt: dict) -> dict:
 
     # Generate Verifiable Credential
     credential = {
-        "iss": "did:elsi:VATES-B87307609",
-        "sub": "did:elsi:VATES-B87307609",
+        "iss": "did:elsi:VATBE-0817807097",
+        "sub": "did:elsi:VATBE-0817807097",
         "iat": now,
         "exp": exp,
         "uuid": uid,
@@ -424,8 +424,8 @@ def receipts_as_vc(tx_receipt: TxReceipt, tol_receipt: dict) -> dict:
 
     # Generate Verifiable Credential
     credential = {
-        "iss": "did:elsi:VATES-B87307609",
-        "sub": "did:elsi:VATES-B87307609",
+        "iss": "did:elsi:VATBE-0817807097",
+        "sub": "did:elsi:VATBE-0817807097",
         "iat": now,
         "exp": exp,
         "uuid": uid,

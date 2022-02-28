@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "CanisMajorPy"
 version = "0.1.0"
-description = "FIWARE Canis Major in fast performance python"
+description = "FIWARE Canis Major in fast python"
 authors = ["Jesus Ruiz"]
 
 [tool.poetry.dependencies]
@@ -22,6 +22,8 @@ piccolo-api = "^0.28.1"
 aiosqlite = "^0.17.0"
 locust = "^2.5.1"
 sqlmodel = "^0.0.6"
+strictyaml = "^1.6.1"
+gunicorn = "^20.1.0"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.6.0"

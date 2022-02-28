@@ -144,6 +144,30 @@ def entity_delete_by_id(entityId: str):
     """
     return {"message": "Not yet implemented"}
 
+
+
+@router.post("/ngsi-ld/v1/entityOperations/upsert",
+    response_class=ORJSONResponse,
+    status_code=200,
+    tags=["NGSI-LD Operations Upsert"])
+def entity_creation(
+    Link: Optional[str] = Header(None),
+    msg: dict = Body(
+        ...
+    )
+):
+    """Register the hash of the new entity created on Context Broker.
+    """
+
+    if Link is None:
+        pass
+
+    receipt = {}
+
+    return receipt
+
+
+
 @router.post("/ngsi-ld/v1/entities/{entityId}/attrs/",
     response_class=ORJSONResponse,
     tags=["NGSI-LD Entity Attribute List"])
