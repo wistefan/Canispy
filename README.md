@@ -1,2 +1,4 @@
 # Canispy
- Canismajor in python
+Canismajor in python
+
+This is an experimental version of Canismajor.
