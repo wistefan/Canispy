@@ -25,7 +25,7 @@ w3 = None
 # Auxiliary procedures
 ##########################################################################
 
-debug = False
+debug = True
 #debug = True
 
 # Defaul providers
@@ -273,6 +273,7 @@ def send_signed_tx(contract_function, private_key: HexBytes = None, timeout: int
     unsignedTx = contract_function.buildTransaction(txparms)
     if debug:
         print(f"Built the transaction object")
+        print(f"Unsingend tx: {unsignedTx}")
 
     # Sign the transaction with the private key
     # This way we can send the transaction without relying on accounts hosted in any node

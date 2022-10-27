@@ -1,0 +1,38 @@
+{
+  "name": "aeicontract",
+  "version": "0.0.3",
+  "description": "AEI Contract",
+  "scripts": {
+    "test": "./node_modules/.bin/truffle test",
+    "coverage": "./coverage-verify.sh 100",
+    "compile": "./node_modules/.bin/truffle compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FIWARE-Blockchain/AEIContract.git"
+  },
+  "keywords": [
+    "npm",
+    "node",
+    "javascript",
+    "iota",
+    "fiware",
+    "contract",
+    "AEI Contract",
+    "merkle tree",
+    "ipfs"
+  ],
+  "dependencies": {
+    "@openzeppelin/contracts": "^2.5.1",
+    "truffle-privatekey-provider": "^1.5.0"
+  },
+  "author": "Har Preet Singh <harpreet.singh@fiware.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FIWARE-Blockchain/AEIContract/issues"
+  },
+  "homepage": "https://github.com/FIWARE-Blockchain/AEIContract#readme",
+  "devDependencies": {
+    "truffle": "^5.3.11"
+  }
+}

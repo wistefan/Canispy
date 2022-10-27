@@ -5,22 +5,17 @@ contract Timestamper {
 
     address owner = msg.sender;   
 
-    modifier onlyOwner(){
-        require(msg.sender == owner, "Rejected because of invalid owner");
-        _;
-    }
-
     constructor() {
         owner = msg.sender;
     }
 
     event Timestamp(uint256 indexed id_hash, uint256 indexed value_hash);
 
-    function timestamp(uint256 id_hash, uint256 value_hash) public onlyOwner {
+    function timestamp(uint256 id_hash, uint256 value_hash) public {
         emit Timestamp(id_hash, value_hash);
     }
 
-    function batchTimestamp(uint256[] memory id_hashes, uint256[] memory value_hashes) public onlyOwner {
+    function batchTimestamp(uint256[] memory id_hashes, uint256[] memory value_hashes) public {
         for (uint256 i = 0; i < id_hashes.length; i++) {
             emit Timestamp(id_hashes[i], value_hashes[i]);
         }

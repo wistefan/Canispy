@@ -17,6 +17,7 @@ from blockchain import redt as b
 from blockchain import wallet, didutils, redt
 from blockchain import tolar_hashnet
 
+from eth_account import Account
 from hexbytes import HexBytes
 
 try:
@@ -123,14 +124,19 @@ def timestamp(id: str, value: dict) -> dict:
     h.update(sorted_dict)
     d = h.digest()
     value_hash = Web3.toInt(d)
+    print("++++++++++++++++++++++++++++++++")
+    print(value_hash)
 
     # Get the JWK key from the wallet
     owner_key = wallet.get_account(owner_account, owner_password)
     if owner_key is None:
         raise Exception("Invalid account")
 
-    private_key = owner_key.privateKey
+    #owner_key = Account.from_key("0x22aabb811efca4e6f4748bd18a46b502fa85549df9fa07da649c0a148d7d5530")
 
+    private_key = owner_key.privateKey
+    print("PK++++++++++++++++++++++++++++++")
+    print(private_key.hex())
     # Get the contract wrapper
     contract_fun = Timestamper.functions.timestamp(id_hash, value_hash)
 
@@ -281,8 +287,8 @@ def receipt_as_vc(tx_receipt: TxReceipt) -> dict:
 
     # Generate Verifiable Credential
     credential = {
-        "iss": "did:elsi:VATBE-0817807097",
-        "sub": "did:elsi:VATBE-0817807097",
+        "iss": "did:elsi:VATES-B87307609",
+        "sub": "did:elsi:VATES-B87307609",
         "iat": now,
         "exp": exp,
         "uuid": uid,
@@ -336,8 +342,8 @@ def receipt_as_vc2(tx_receipt: dict) -> dict:
 
     # Generate Verifiable Credential
     credential = {
-        "iss": "did:elsi:VATBE-0817807097",
-        "sub": "did:elsi:VATBE-0817807097",
+        "iss": "did:elsi:VATES-B87307609",
+        "sub": "did:elsi:VATES-B87307609",
         "iat": now,
         "exp": exp,
         "uuid": uid,
@@ -387,6 +393,7 @@ def receipts_as_vc(tx_receipt: TxReceipt, tol_receipt: dict) -> dict:
     exp = now + one_year  # The token will expire in 365 days
 
     logs = []
+    
     for item in tx_receipt["logs"][0]["topics"]:
         logs.append(Web3.toHex(item))
 
@@ -424,8 +431,8 @@ def receipts_as_vc(tx_receipt: TxReceipt, tol_receipt: dict) -> dict:
 
     # Generate Verifiable Credential
     credential = {
-        "iss": "did:elsi:VATBE-0817807097",
-        "sub": "did:elsi:VATBE-0817807097",
+        "iss": "did:elsi:VATES-B87307609",
+        "sub": "did:elsi:VATES-B87307609",
         "iat": now,
         "exp": exp,
         "uuid": uid,
